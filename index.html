@@ -48,7 +48,7 @@
 
         .card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(106, 176, 76, 0.2);
+            border: 1px?w=480&fit=crop&auto=format 1px solid rgba(106, 176, 76, 0.2);
             border-radius: 12px;
         }
 
@@ -332,7 +332,7 @@
                 </div>
                 <div class="card bg-card-bg rounded-lg p-5 text-center">
                     <i class="fas fa-code text-4xl text-primary mb-3"></i>
-                    <h3 class="text-xl font-semibold組合 mb-2">Problem Solving</h3>
+                    <h3 class="text-xl font-semibold mb-2">Problem Solving</h3>
                     <p>Strong problem-solving skills with experience in implementing algorithms and data structures.</p>
                 </div>
                 <div class="card bg-card-bg rounded-lg p-5 text-center">
@@ -528,6 +528,13 @@
         function toggleMenu() {
             document.querySelector('.nav-menu').classList.toggle('active');
         }
+
+        // Close menu when a link is clicked
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-menu').classList.remove('active');
+            });
+        });
 
         document.querySelectorAll('.carousel').forEach(carousel => {
             let isDragging = false, startX, scrollLeft;
