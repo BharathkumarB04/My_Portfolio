@@ -6,572 +6,206 @@
     <title>Bharath Kumar</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* Updated color theme */
         :root {
-            --primary-color: #6ab04c; /* Soft green */
-            --secondary-color: #eb4d4b; /* Soft red */
-            --bg-light: #f5f5f5; /* Light gray */
-            --text-dark: #2d3436; /* Dark gray */
-            --card-bg: #ffffff; /* White cards */
-            --gradient: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            --primary-color: #4f46e5; /* Indigo-600 */
+            --secondary-color: #9333ea; /* Purple-500 */
+            --gradient-bg: linear-gradient(to right, var(--primary-color), var(--secondary-color));
         }
 
-        body {
-            font-family: 'Manrope', sans-serif;
-            background: var(--bg-light);
-            color: var(--text-dark);
-            margin: 0;
-            line-height: 1.6;
-        }
-
+        /* Background Gradient */
         .bg-gradient {
-            background: var(--gradient);
+            background: var(--gradient-bg);
         }
 
-        .text-primary { color: var(--primary-color); }
-        .text-secondary { color: var(--secondary-color); }
+        /* Text color adjustments */
+        .text-primary {
+            color: var(--primary-color);
+        }
 
-        a, button {
-            transition: all 0.3s ease;
+        .text-secondary {
+            color: var(--secondary-color);
+        }
+
+        /* Smooth hover effects */
+        a {
+            transition: color 0.3s ease;
         }
 
         a:hover {
             color: var(--primary-color);
-            transform: translateY(-1px);
         }
 
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(106, 176, 76, 0.3);
+        button, .bg-blue-500 {
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
-      .card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid rgba(106, 176, 76, 0.2);
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Thicker default shadow */
-}
-
-.card:hover {
-    transform: scale(1.02);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Thicker hover shadow */
-}
-
-        html { scroll-behavior: smooth; }
-
-        /* Navbar */
-        nav {
-            background: #ffffff;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+        button:hover, .bg-blue-500:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px); /* Subtle lift effect */
         }
 
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 1rem;
+        .shadow-md {
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
         }
 
-        .nav-menu {
-            display: flex;
-            align-items: center;
+        .shadow-md:hover {
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px); /* Lift effect for project cards */
         }
 
-        .nav-menu.active {
-            display: flex;
-            flex-direction: column;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: var(--card-bg);
-            justify-content: center;
-            align-items: center;
-            z-index: 99;
-            padding: 1rem;
-        }
-
-        .nav-menu.active li {
-            margin: 1rem 0;
-        }
-
-        .nav-menu.active a {
-            font-size: 1.5rem;
-            color: var(--text-dark);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-        }
-
-        .nav-menu.active a:hover {
-            background: rgba(106, 176, 76, 0.1);
-            color: var(--primary-color);
-        }
-
-        .hamburger {
-            display: none;
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            cursor: pointer;
-            padding: 0.5rem;
-            border-radius: 4px;
-            transition: background 0.3s ease;
-        }
-
-        .hamburger:hover {
-            background: rgba(106, 176, 76, 0.1);
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(12px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .fade-in {
-            animation: fadeIn 0.6s ease-out forwards;
-        }
-
-        /* Carousel */
-        .carousel-container {
-            overflow: hidden;
-            padding: 1.5rem 0;
-            position: relative;
-        }
-
-        .carousel {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
-
-        .carousel::-webkit-scrollbar { display: none; }
-
-        .carousel-item {
-            flex: 0 0 auto;
-            width: 400px;
-            margin-right: 1.5rem;
-            scroll-snap-align: start;
-        }
-
-        .carousel-item img {
-            object-fit: cover;
-            height: 200px;
-            width: 100%;
-            border-radius: 12px 12px 0 0;
-        }
-
-        .carousel-controls {
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            transform: translateY(-50%);
-            pointer-events: none;
-        }
-
-        .carousel-controls button {
-            pointer-events: auto;
-            background: var(--primary-color);
-            color: #ffffff;
-            border: none;
-            border-radius: 50%;
-            width: 48px;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-
-        .carousel-controls button:hover {
-            background: var(--secondary-color);
-        }
-
-        /* Education Card */
-        .education-card {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
-        }
-
-        /* Responsive */
-        @media (max-width: 640px) {
-            .carousel-item {
-                width: 300px;
-                margin-right: 1rem;
-            }
-
-            h2 { font-size: 2.25rem; }
-            .carousel-item h3 { font-size: 1.25rem; }
-            .carousel-item p { font-size: 0.95rem; }
-            .carousel-controls button { width: 40px; height: 40px; }
-            .education-card h3 { font-size: 1.25rem; }
-            .education-card p { font-size: 0.95rem; }
-
-            .nav-menu {
-                display: none;
-            }
-
-            .nav-menu.active {
-                display: flex;
-            }
-
-            .hamburger {
-                display: block;
-                margin-left: auto;
-            }
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
         }
     </style>
 </head>
-<body>
+<body class="font-roboto bg-gray-100 text-gray-900">
+
     <!-- Navbar -->
-    <nav class="shadow-md">
-        <div class="nav-container container mx-auto">
-            <a href="https://github.com/BharathkumarB04/" class="text-2xl font-bold text-dark">Bharath Kumar</a>
-            <i class="fas fa-bars hamburger" onclick="toggleMenu()"></i>
-            <ul class="nav-menu space-x-4">
-                <li><a href="#about" class="text-dark hover:text-primary">About</a></li>
-                <li><a href="#education" class="text-dark hover:text-primary">Education</a></li>
-                <li><a href="#skills" class="text-dark hover:text-primary">Skills</a></li>
-                <li><a href="#projects" class="text-dark hover:text-primary">Projects</a></li>
-                <li><a href="#certifications" class="text-dark hover:text-primary">Certifications</a></li>
-                <li><a href="#achievements" class="text-dark hover:text-primary">Achievements</a></li>
-                <li><a href="#contact" class="text-dark hover:text-primary">Contact</a></li>
+    <nav class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-2 flex justify-between items-center">
+            <a href="https://github.com/BharathkumarB04/" class="text-2xl font-bold text-gray-900">Bharath Kumar's Portfolio</a>
+            <ul class="flex space-x-4">
+                <li><a href="#about" class="text-gray-700 hover:text-primary">About</a></li>
+                <li><a href="#skills" class="text-gray-700 hover:text-primary">Skills</a></li>
+                <li><a href="#projects" class="text-gray-700 hover:text-primary">Projects</a></li>
+                <li><a href="#contact" class="text-gray-700 hover:text-primary">Contact</a></li>
             </ul>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="bg-gradient text-white py-20 text-center fade-in">
-        <div class="container mx-auto px-4">
-            <h1 class="text-5xl font-bold mb-4">Hii, its me Bharath kumar</h1>
-            <p class="text-lg mb-6">Aspiring Python Developer</p>
-            <a href="#projects" class="bg-white text-primary px-6 py-2 rounded-full hover:bg-secondary hover:text-white">View My Work</a>
+    <section class="bg-gradient text-white py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl font-bold mb-4">Hello, I'm Bharath Kumar</h1>
+            <p class="mb-8">Aspiring Python Backend Developer</p>
+            <a href="#projects" class="bg-white text-primary px-6 py-3 rounded-full hover:bg-gray-100">Let's See My Work</a>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-16 fade-in">
+    <section id="about" class="bg-gray-100 py-20">
         <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
             <div class="md:w-1/2 mb-8 md:mb-0">
-                <img src="about.png" alt="Bharath Kumar" style="border-radius: 1.5rem;" class="mx-auto border-2 border-primary" width="280">
+                <img src="pic.jpeg" alt="A professional headshot of the developer" class="rounded-full mx-auto" width="300">
             </div>
-            <div class="md:w-1/2 md:pl-8">
-                <h2 class="text-4xl font-bold text-primary mb-4">About Me</h2>
-                <p class="mb-4">I am an Aspiring Python developer with a strong foundation in Python and Database management systems.</p>
-                <p>I'm enthusiastic about learning new technologies, collaborating on meaningful projects, and contributing to impactful software solutions.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education" class="py-16 bg-light fade-in">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center text-primary mb-8">Education</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-                <div class="card bg-card-bg rounded-lg p-5 education-card">
-                    <div>
-                        <h3 class="text-xl font-bold text-primary mb-2">Bachelor of Science in Computer Science (B.Sc - CS)</h3>
-                        <p class="text-dark mb-1">Jaya College of Arts and Science, Chennai</p>
-                        <p class="text-dark mb-1">2022 - 2025</p>
-                        <p class="text-dark"><b>CGPA: 9.0/10</b></p>
-                    </div>
-                </div>
-                <div class="card bg-card-bg rounded-lg p-5 education-card">
-                    <div>
-                        <h3 class="text-xl font-bold text-primary mb-2">Higher Secondary Certificate (HSC)</h3>
-                        <p class="text-dark mb-1">Don Bosco Higher Secondary School, Chennai</p>
-                        <p class="text-dark mb-1">2019 - 2021</p>
-                        <p class="text-dark"><b>Percentage: 84.4%</b></p>
-                    </div>
-                </div>
-                <div class="card bg-card-bg rounded-lg p-5 education-card">
-                    <div>
-                        <h3 class="text-xl font-bold text-primary mb-2">Secondary School Leaving Certificate (SSLC)</h3>
-                        <p class="text-dark mb-1">Wesley's Matriculation Higher Secondary School, Chennai</p>
-                        <p class="text-dark mb-1">2019</p>
-                        <p class="text-dark"><b>Percentage: 79.4%</b></p>
-                    </div>
-                </div>
+            <div class="md:w-1/2 md:pl-12">
+                <h2 class="text-3xl font-bold mb-4 text-primary">About Me</h2>
+                <p class="text-gray-700 mb-4">I am an Aspiring Python Backend developer with a strong foundation in Python and Database management systems.</p>
+                <p class="text-gray-700">I'm enthusiastic about learning new technologies, collaborating on meaningful projects, and contributing to impactful software solutions.</p>
             </div>
         </div>
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-16 bg-light fade-in">
+    <section id="skills" class="bg-white py-20">
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center text-primary mb-8">My Skills</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="card bg-card-bg rounded-lg p-5 text-center">
-                    <i class="fab fa-python text-4xl text-primary mb-3"></i>
-                    <h3 class="text-xl font-semibold mb-2">Python</h3>
-                    <p>Experienced in developing Python-based applications with a focus on backend development and automation.</p>
+            <h2 class="text-3xl font-bold text-center text-primary mb-12">My Skills</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="shadow-md rounded-lg p-6 text-center">
+                    <i class="fab fa-python text-4xl text-primary mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Python</h3>
+                    <p class="text-gray-700">Experienced in developing Python-based applications with a focus on backend development and automation.</p>
                 </div>
-                <div class="card bg-card-bg rounded-lg p-5 text-center">
-                    <i class="fas fa-database text-4xl text-primary mb-3"></i>
-                    <h3 class="text-xl font-semibold mb-2">Database Management</h3>
-                    <p>Proficient in MySQL, SQLite, and database design with optimized queries for performance.</p>
+                <div class="shadow-md rounded-lg p-6 text-center">
+                    <i class="fas fa-database text-4xl text-primary mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Database Management</h3>
+                    <p class="text-gray-700">Proficient in MySQL, SQLite, and database design with optimized queries for performance.</p>
                 </div>
-                <div class="card bg-card-bg rounded-lg p-5 text-center">
-                    <i class="fas fa-server text-4xl text-primary mb-3"></i>
-                    <h3 class="text-xl font-semibold mb-2">Django</h3>
-                    <p>Beginner-level experience with Django framework, building dynamic web applications and APIs.</p>
+                <div class="shadow-md rounded-lg p-6 text-center">
+                    <i class="fas fa-server text-4xl text-primary mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Flask & Django</h3>
+                    <p class="text-gray-700">Beginner-level experience with Flask and Django, building dynamic web applications and APIs.</p>
                 </div>
-                <div class="card bg-card-bg rounded-lg p-5 text-center">
-                    <i class="fab fa-git-alt text-4xl text-primary mb-3"></i>
-                    <h3 class="text-xl font-semibold mb-2">Version Control</h3>
-                    <p>Familiar with Git and GitHub for code management, collaboration, and version control.</p>
+                <div class="shadow-md rounded-lg p-6 text-center">
+                    <i class="fab fa-git-alt text-4xl text-primary mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Version Control</h3>
+                    <p class="text-gray-700">Familiar with Git and GitHub for code management, collaboration, and version control.</p>
                 </div>
-                <div class="card bg-card-bg rounded-lg p-5 text-center">
-                    <i class="fas fa-code text-4xl text-primary mb-3"></i>
-                    <h3 class="text-xl font-semibold mb-2">Problem Solving</h3>
-                    <p>Strong problem-solving skills with experience in implementing algorithms and data structures.</p>
+                <div class="shadow-md rounded-lg p-6 text-center">
+                    <i class="fas fa-code text-4xl text-primary mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Problem Solving</h3>
+                    <p class="text-gray-700">Strong problem-solving skills with experience in implementing algorithms and data structures.</p>
                 </div>
-                <div class="card bg-card-bg rounded-lg p-5 text-center">
-                    <i class="fas fa-pencil-ruler text-4xl text-primary mb-3"></i>
-                    <h3 class="text-xl font-semibold mb-2">Design Thinking</h3>
-                    <p>Capable of designing user-centric solutions and prototypes for efficient problem-solving.</p>
+                <div class="shadow-md rounded-lg p-6 text-center">
+                    <i class="fas fa-pencil-ruler text-4xl text-primary mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Design Thinking</h3>
+                    <p class="text-gray-700">Capable of designing user-centric solutions and prototypes for efficient problem-solving.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-16 fade-in">
+    <section id="projects" class="bg-white py-20">
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center text-primary mb-8">My Projects</h2>
-            <div class="carousel-container">
-                <div class="carousel" id="projects-carousel">
-                    <div class="carousel-item">
-                        <div class="card bg-card-bg rounded-lg overflow-hidden">
-                            <img src="logo.jpg" alt="PeFA">
-                            <div class="p-5">
-                                <a href="https://github.com/BharathkumarB04/PEFA" class="text-xl font-bold text-primary">Personal Finance Assistant (PeFA)</a>
-                                <p>Personal Finance Assistant (PeFA) is a comprehensive financial management tool designed to help users track expenses, set budgets, plan savings, and analyze investments.</p>
-                            </div>
-                        </div>
+            <h2 class="text-3xl font-bold text-center text-primary mb-12">My Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="shadow-md rounded-lg overflow-hidden">
+                    <img src="expenses.ico" alt="Project 1" class="w-full">
+                    <div class="p-4">
+                        <a href="https://github.com/BharathkumarB04/Expense_tracker.git" class="text-xl font-bold mb-2">Expense Tracker</a>
+                        <p class="text-gray-700">It is a simple expense tracker to manage daily expenses and visualize expense reports.</p>
                     </div>
-                    <div class="shadow-md rounded-lg overflow-hidden">
+                </div>
+				<div class="shadow-md rounded-lg overflow-hidden">
                     <img src="Kivo.png" alt="Project 1" class="w-full">
                     <div class="p-4">
                         <a href="https://github.com/BharathkumarB04/kivo_chatbot" class="text-xl font-bold mb-2">Kivo - Your AI buddy</a>
                         <p class="text-gray-700">Kivo Ai is made by HTML, CSS and Python Django framework. Primarily,it is developed by using Gemini API for interaction</p>
                     </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="card bg-card-bg rounded-lg overflow-hidden">
-                            <img src="expenses.ico" alt="Expense Tracker">
-                            <div class="p-5">
-                                <a href="https://github.com/BharathkumarB04/Expense_tracker.git" class="text-xl font-bold text-primary">Expense Tracker</a>
-                                <p>It is a simple expense tracker to manage daily expenses and visualize expense reports.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="card bg-card-bg rounded-lg overflow-hidden">
-                            <img src="qrcode.png" alt="QR Code Generator">
-                            <div class="p-5">
-                                <a href="https://github.com/BharathkumarB04/QrCode-Generator" class="text-xl font-bold text-primary">QR Code Generator</a>
-                                <p>A basic QR code generator using Python Tkinter for the GUI interface.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="card bg-card-bg rounded-lg overflow-hidden">
-                            <img src="todo.jpg" alt="Todo List">
-                            <div class="p-5">
-                                <a href="https://github.com/BharathkumarB04/Todo_list" class="text-xl font-bold text-primary">Simple Todo List</a>
-                                <p>A simple to-do list application using Python and SQLite for task management.</p>
-                            </div>
-                        </div>
+                </div>
+                <div class="shadow-md rounded-lg overflow-hidden">
+                    <img src="qrcode.png" alt="Project 2" class="w-full">
+                    <div class="p-4">
+                        <a href="https://github.com/BharathkumarB04/QrCode-Generator" class="text-xl font-bold mb-2">QR Code Generator</a>
+                        <p class="text-gray-700">A basic QR code generator using Python Tkinter for the GUI interface.</p>
                     </div>
                 </div>
-                <div class="carousel-controls">
-                    <button onclick="scrollCarousel('projects-carousel', -400)"><i class="fas fa-chevron-left"></i></button>
-                    <button onclick="scrollCarousel('projects-carousel', 400)"><i class="fas fa-chevron-right"></i></button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Certifications Section -->
-    <section id="certifications" class="py-16 bg-light fade-in">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center text-primary mb-8">Certifications</h2>
-            <div class="carousel-container">
-                <div class="carousel" id="certifications-carousel">
-                    <div class="carousel-item">
-                        <div class="card bg-card-bg rounded-lg overflow-hidden">
-                            <img src="1.png" alt="Python by Guvi">
-                            <div class="p-5">
-                                <h3 class="text-xl font-bold text-primary">Python Programming by Guvi</h3>
-                                <p>Completed the Python for Everybody Specialization from GUVI, covering Python programming.</p>
-                            </div>
-                        </div>
+                <div class="shadow-md rounded-lg overflow-hidden">
+                    <img src="todo.jpg" alt="Project 3" class="w-full">
+                    <div class="p-4">
+                        <a href="https://github.com/BharathkumarB04/Todo_list" class="text-xl font-bold mb-2">Simple Todo list</a>
+                        <p class="text-gray-700">A simple to-do list application using Python and SQLite for task management.</p>
                     </div>
-                    <div class="carousel-item">
-                        <div class="card bg-card-bg rounded-lg overflow-hidden">
-                            <img src="2.jpg" alt="Java by Sololearn">
-                            <div class="p-5">
-                                <h3 class="text-xl font-bold text-primary">Intermediate Level of Java Programming</h3>
-                                <p>Earned a certification from Sololearn, focusing on Java basics and OOPS concepts.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="card bg-card-bg rounded-lg overflow-hidden">
-                            <img src="4.jpeg" alt="DBMS by Scaler">
-                            <div class="p-5">
-                                <h3 class="text-xl font-bold text-primary">Database Management System by Scaler</h3>
-                                <p>Completed an online course on MySQL, learning to build a database with suitable constraints.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="card bg-card-bg rounded-lg overflow-hidden">
-                            <img src="3.jpg" alt="HackerRank Python">
-                            <div class="p-5">
-                                <h3 class="text-xl font-bold text-primary">HackerRank Python Basics Certification</h3>
-                                <p>Completed the Python Basics certification from HackerRank, demonstrating proficiency in Python fundamentals.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-controls">
-                    <button onclick="scrollCarousel('certifications-carousel', -400)"><i class="fas fa-chevron-left"></i></button>
-                    <button onclick="scrollCarousel('certifications-carousel', 400)"><i class="fas fa-chevron-right"></i></button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Achievements Section -->
-    <section id="achievements" class="py-16 fade-in">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center text-primary mb-8">Achievements</h2>
-            <div class="carousel-container">
-                <div class="carousel" id="achievements-carousel">
-                    <div class="carousel-item">
-                        <div class="card bg-card-bg rounded-lg overflow-hidden">
-                            <img src="a.jpeg" alt="Best Outgoing Student">
-                            <div class="p-5">
-                                <h3 class="text-xl font-bold text-primary">Best Outgoing Student Award 2025</h3>
-                                <p>Received the prestigious Best Outgoing Student Award 2025 from Jaya College of Arts and Science (JCAS).</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="card bg-card-bg rounded-lg overflow-hidden">
-                            <img src="c.jpeg" alt="TCS iON">
-                            <div class="p-5">
-                                <h3 class="text-xl font-bold text-primary">Career Edge Professional by TCS iON</h3>
-                                <p>Completed the TCS iON Career Edge Professional Certification, gaining skills in professional communication.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="card bg-card-bg rounded-lg overflow-hidden">
-                            <img src="d.jpeg" alt="Accenture Simulation">
-                            <div class="p-5">
-                                <h3 class="text-xl font-bold text-primary">Accenture Job Simulation Certification</h3>
-                                <p>Completed Accenture's Job Simulation Certification, mastering Software Development Life Cycle (SDLC).</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="card bg-card-bg rounded-lg overflow-hidden">
-                            <img src="b.jpg" alt="TECHTOPHIA">
-                            <div class="p-5">
-                                <h3 class="text-xl font-bold text-primary">TECHTOPHIA Exhibition Participant 2023</h3>
-                                <p>Participated in the TECHTOPHIA exhibition at Jaya College of Arts and Science, presenting VPN concepts.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-controls">
-                    <button onclick="scrollCarousel('achievements-carousel', -400)"><i class="fas fa-chevron-left"></i></button>
-                    <button onclick="scrollCarousel('achievements-carousel', 400)"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-light fade-in">
+    <section id="contact" class="bg-gray-100 py-20">
         <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl font-bold text-primary mb-6">Get In Touch</h2>
-            <p class="mb-6">I'd love to hear from you! Feel free to drop a message.</p>
-            <form class="max-w-md mx-auto" action="https://formspree.io/f/mvgggaka" method="POST">
-                <input type="text" name="Name" placeholder="Your Name" class="w-full px-4 py-2 mb-4 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-                <input type="email" name="Email" placeholder="Your Email" class="w-full px-4 py-2 mb-4 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-                <textarea name="message" placeholder="Your Message" class="w-full px-4 py-2 mb-4 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
-                <button type="submit" class="bg-gradient text-white px-6 py-2 rounded-full hover:bg-secondary">Send Message</button>
+            <h2 class="text-3xl font-bold mb-8 text-primary">Get In Touch</h2>
+            <p class="text-gray-700 mb-8">I'd love to hear from you! Feel free to drop a message below.</p>
+            <form class="max-w-lg mx-auto" action="https://formspree.io/f/mvgggaka" method="POST">
+                <div class="mb-4">
+                    <input type="text" name="Name" placeholder="Your Name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                </div>
+                <div class="mb-4">
+                    <input type="email" placeholder="Your Email" name="Email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                </div>
+                <div class="mb-4">
+                    <textarea placeholder="Your Message" name="message" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+                </div>
+                <button type="submit" class="bg-gradient text-white px-6 py-3 rounded-full hover:bg-purple-700">Send Message</button>
             </form>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gradient py-4 text-center text-white">
-        <p>© 2024 Bharath Kumar. All rights reserved.</p>
-        <div class="flex justify-center space-x-4 mt-2">
-            <a href="https://www.linkedin.com/in/bharath-kumar-b-a6331b2a2" class="text-white hover:text-primary"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://www.github.com/BharathkumarB04/" class="text-white hover:text-primary"><i class="fab fa-github"></i></a>
+    <footer class="bg-gradient py-6">
+        <div class="container mx-auto px-4 text-center text-white">
+            <p>&copy; 2024 Bharath Kumar. All rights reserved.</p>
+            <div class="flex justify-center space-x-4 mt-4">
+                <a href="#" class="hover:text-gray-300"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="hover:text-gray-300"><i class="fab fa-github"></i></a>
+            </div>
         </div>
     </footer>
 
-    <script>
-        function scrollCarousel(carouselId, offset) {
-            document.getElementById(carouselId).scrollBy({ left: offset, behavior: 'smooth' });
-        }
-
-        function toggleMenu() {
-            document.querySelector('.nav-menu').classList.toggle('active');
-        }
-
-        // Close menu when a link is clicked
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.querySelector('.nav-menu').classList.remove('active');
-            });
-        });
-
-        document.querySelectorAll('.carousel').forEach(carousel => {
-            let isDragging = false, startX, scrollLeft;
-            carousel.addEventListener('mousedown', e => {
-                isDragging = true;
-                startX = e.pageX - carousel.offsetLeft;
-                scrollLeft = carousel.scrollLeft;
-                carousel.style.cursor = 'grabbing';
-            });
-            carousel.addEventListener('mouseleave', () => isDragging = false);
-            carousel.addEventListener('mouseup', () => { isDragging = false; carousel.style.cursor = 'grab'; });
-            carousel.addEventListener('mousemove', e => {
-                if (!isDragging) return;
-                e.preventDefault();
-                const x = e.pageX - carousel.offsetLeft;
-                carousel.scrollLeft = scrollLeft - (x - startX) * 2;
-            });
-            carousel.addEventListener('touchstart', e => {
-                isDragging = true;
-                startX = e.touches[0].pageX - carousel.offsetLeft;
-                scrollLeft = carousel.scrollLeft;
-            });
-            carousel.addEventListener('touchend', () => isDragging = false);
-            carousel.addEventListener('touchmove', e => {
-                if (!isDragging) return;
-                const x = e.touches[0].pageX - carousel.offsetLeft;
-                carousel.scrollLeft = scrollLeft - (x - startX) * 2;
-            });
-        });
-    </script>
 </body>
 </html>
